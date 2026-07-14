@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QuantumB Learn — Cohort Bootcamps in Data, Analytics &amp; Automation</title>
+<meta name="description" content="Cohort-based bootcamps in Data Analytics Engineering, Data Foundation and n8n Workflow Automation. Every course comes with its own materials, attached right here.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* Bright, paper-forward palette — inverted dominance from the studio site.
+       Warm white leads; chocolate becomes the accent ink; gold stays the spark. */
+    --paper:#FBF6EC;
+    --paper-2:#FFFFFF;
+    --paper-shade:#F3E9D6;
+    --ink:#2B1B12;
+    --ink-soft:#5A4130;
+    --ink-faint:#8A6F58;
+    --gold:#F0A93A;
+    --gold-light:#F7C978;
+    --copper:#C1652F;
+    --copper-deep:#8C4423;
+    --line:rgba(43,27,18,0.12);
+    --line-strong:rgba(43,27,18,0.22);
+    --card:#FFFFFF;
+    --shadow-lg:0 30px 60px -24px rgba(43,27,18,0.25);
+    --shadow-sm:0 10px 24px -14px rgba(43,27,18,0.18);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.55;
+    overflow-x:hidden;
+  }
+  h1,h2,h3{
+    font-family:'Fraunces',serif;
+    font-weight:700;
+    letter-spacing:-0.01em;
+    color:var(--ink);
+  }
+  .mono{
+    font-family:'JetBrains Mono',monospace;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    font-size:0.75rem;
+  }
+  a{color:inherit;text-decoration:none;}
+  img{display:block;max-width:100%;}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 28px;position:relative;z-index:2;}
+  .gold-text{
+    background:linear-gradient(120deg,var(--copper-deep) 0%, var(--copper) 40%, var(--gold) 100%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+
+  /* NAV */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(251,246,236,0.85);
+    backdrop-filter:blur(14px) saturate(140%);
+    border-bottom:1px solid var(--line);
+  }
+  nav{display:flex;align-items:center;justify-content:space-between;padding:18px 28px;max-width:1140px;margin:0 auto;}
+  .logo{font-family:'Fraunces',serif;font-weight:700;font-size:1.15rem;display:flex;align-items:baseline;gap:6px;}
+  .logo .tag{font-family:'JetBrains Mono',monospace;font-size:0.68rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--copper);border:1px solid var(--line-strong);border-radius:20px;padding:3px 9px;}
+  .nav-links{display:flex;gap:30px;list-style:none;}
+  .nav-links a{color:var(--ink-soft);font-size:0.92rem;font-weight:500;transition:color 0.2s;}
+  .nav-links a:hover{color:var(--copper-deep);}
+  .nav-cta{
+    background:linear-gradient(135deg,var(--gold-light),var(--gold) 60%,var(--copper));
+    color:var(--ink);
+    padding:10px 20px;border-radius:8px;font-weight:700;font-size:0.86rem;
+    box-shadow:0 8px 18px -6px rgba(193,101,47,0.45);
+    transition:transform 0.15s, box-shadow 0.15s;
+  }
+  .nav-cta:hover{transform:translateY(-1px);}
+  .menu-btn{display:none;background:none;border:none;color:var(--ink);font-size:1.5rem;cursor:pointer;}
+  .back-link{font-size:0.82rem;color:var(--ink-faint);}
+  .back-link:hover{color:var(--copper-deep);}
+
+  /* HERO */
+  .hero{position:relative;padding:120px 0 90px;overflow:hidden;}
+  .hero-mesh{
+    position:absolute;inset:0;z-index:0;
+    background:
+      radial-gradient(650px 420px at 85% -8%, rgba(240,169,58,0.30), transparent 60%),
+      radial-gradient(520px 400px at 5% 20%, rgba(193,101,47,0.16), transparent 65%),
+      radial-gradient(760px 520px at 55% 115%, rgba(247,201,120,0.28), transparent 60%);
+  }
+  .eyebrow{color:var(--copper-deep);margin-bottom:20px;display:flex;align-items:center;gap:10px;}
+  .eyebrow::before{content:"";width:22px;height:1px;background:var(--copper-deep);display:inline-block;}
+  .hero-grid{display:grid;grid-template-columns:1.15fr 0.85fr;gap:48px;align-items:center;}
+  .hero h1{font-size:clamp(2.2rem,4.4vw,3.4rem);line-height:1.1;margin-bottom:22px;}
+  .hero p{max-width:520px;font-size:1.06rem;color:var(--ink-soft);margin-bottom:34px;}
+  .btn-row{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:36px;}
+  .btn{padding:15px 26px;border-radius:10px;font-weight:700;font-size:0.94rem;display:inline-block;transition:transform 0.18s, box-shadow 0.18s;}
+  .btn-primary{
+    background:linear-gradient(135deg,var(--gold-light),var(--gold) 55%,var(--copper));
+    color:var(--ink);
+    box-shadow:0 14px 28px -10px rgba(193,101,47,0.5);
+  }
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 18px 34px -10px rgba(193,101,47,0.6);}
+  .btn-outline{color:var(--ink);background:var(--paper-2);border:1px solid var(--line-strong);}
+  .btn-outline:hover{border-color:var(--copper-deep);color:var(--copper-deep);transform:translateY(-2px);}
+  .stat-row{display:flex;gap:34px;flex-wrap:wrap;}
+  .stat b{display:block;font-family:'Fraunces',serif;font-size:1.6rem;color:var(--copper-deep);}
+  .stat span{font-size:0.8rem;color:var(--ink-faint);}
+  .hero-photo{position:relative;border-radius:22px;overflow:hidden;box-shadow:var(--shadow-lg);border:1px solid var(--line);}
+  .hero-photo img{width:100%;height:100%;object-fit:cover;aspect-ratio:4/5;}
+  .hero-photo-tag{
+    position:absolute;left:16px;bottom:16px;background:rgba(255,255,255,0.92);
+    border:1px solid var(--line);border-radius:10px;padding:10px 14px;
+    font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--ink-soft);
+    box-shadow:var(--shadow-sm);
+  }
+
+  /* NODE DIVIDER */
+  .node-divider{display:flex;align-items:center;padding:0 0 60px;}
+  .node-divider .wrap{display:flex;align-items:center;gap:14px;width:100%;}
+  .node-dot{width:10px;height:10px;border-radius:50%;background:radial-gradient(circle at 35% 30%, var(--gold-light), var(--copper) 75%);box-shadow:0 0 16px 2px rgba(240,169,58,0.5);flex-shrink:0;}
+  .node-line{flex:1;height:1px;background:linear-gradient(90deg, transparent, var(--line-strong) 20%, var(--line-strong) 80%, transparent);}
+  .node-label{font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--copper-deep);text-transform:uppercase;letter-spacing:0.08em;white-space:nowrap;}
+
+  /* SECTION HEAD */
+  .section-head{max-width:620px;margin-bottom:48px;}
+  .section-head h2{font-size:2rem;margin-bottom:14px;}
+  .section-head p{color:var(--ink-soft);}
+
+  /* COURSES — the signature element: each card carries a physical "attached file" tab */
+  .courses{padding:20px 0 100px;}
+  .course-card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:18px;
+    overflow:hidden;
+    margin-bottom:28px;
+    box-shadow:var(--shadow-sm);
+    display:grid;grid-template-columns:0.9fr 1.1fr;
+    position:relative;
+    transition:box-shadow 0.3s ease, transform 0.3s ease;
+  }
+  .course-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-3px);}
+  .course-media{position:relative;background:linear-gradient(160deg,var(--paper-shade),var(--paper));min-height:100%;}
+  .course-media img{width:100%;height:100%;object-fit:cover;}
+  .course-track{
+    position:absolute;top:18px;left:18px;background:rgba(43,27,18,0.85);color:var(--gold-light);
+    font-family:'JetBrains Mono',monospace;font-size:0.7rem;letter-spacing:0.06em;text-transform:uppercase;
+    padding:6px 12px;border-radius:20px;
+  }
+  .course-body{padding:32px 34px;display:flex;flex-direction:column;}
+  .course-body h3{font-size:1.4rem;margin-bottom:10px;}
+  .course-body>p{color:var(--ink-soft);font-size:0.96rem;margin-bottom:18px;}
+  .course-meta{display:flex;gap:18px;flex-wrap:wrap;margin-bottom:20px;}
+  .course-meta span{font-size:0.8rem;color:var(--ink-faint);display:flex;align-items:center;gap:6px;}
+  .syllabus{list-style:none;margin-bottom:22px;}
+  .syllabus li{
+    font-size:0.9rem;color:var(--ink-soft);padding:7px 0 7px 20px;position:relative;
+    border-bottom:1px dashed var(--line);
+  }
+  .syllabus li:last-child{border-bottom:none;}
+  .syllabus li::before{content:"";position:absolute;left:0;top:14px;width:8px;height:1px;background:var(--copper);}
+  .course-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:auto;align-items:center;}
+
+  /* file-tab doc attachment — the signature motif */
+  .doc-chip{
+    display:inline-flex;align-items:center;gap:10px;
+    background:var(--paper-shade);
+    border:1px solid var(--line-strong);
+    border-left:4px solid var(--copper);
+    border-radius:6px;
+    padding:10px 16px 10px 12px;
+    font-size:0.86rem;font-weight:600;color:var(--ink);
+    position:relative;
+    transition:border-color 0.2s, background 0.2s, transform 0.2s;
+  }
+  .doc-chip::before{
+    content:"";width:16px;height:20px;flex-shrink:0;
+    background:var(--paper-2);
+    border:1.5px solid var(--copper-deep);
+    border-radius:2px;
+    clip-path:polygon(0 0, 65% 0, 100% 35%, 100% 100%, 0 100%);
+  }
+  .doc-chip small{display:block;font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:0.05em;font-size:0.62rem;color:var(--ink-faint);font-weight:500;}
+  .doc-chip:hover{border-color:var(--copper-deep);background:#F7EEDC;transform:translateY(-1px);}
+  .enroll-link{font-weight:700;font-size:0.9rem;color:var(--copper-deep);padding:11px 18px;border-radius:8px;background:linear-gradient(135deg,var(--gold-light),var(--gold));box-shadow:0 8px 18px -8px rgba(193,101,47,0.45);}
+  .enroll-link:hover{transform:translateY(-1px);}
+
+  /* FORMAT STRIP */
+  .format{background:linear-gradient(180deg,var(--paper-shade),var(--paper));padding:80px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .format-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  .format-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:28px 24px;}
+  .format-card .mono{color:var(--copper-deep);display:block;margin-bottom:14px;}
+  .format-card h3{font-size:1.1rem;margin-bottom:10px;}
+  .format-card p{font-size:0.9rem;color:var(--ink-soft);}
+
+  /* WHY / FOUNDER STRIP */
+  .why{padding:90px 0;}
+  .why-grid{display:grid;grid-template-columns:0.85fr 1.15fr;gap:52px;align-items:center;}
+  .why-photo{border-radius:20px;overflow:hidden;box-shadow:var(--shadow-lg);border:1px solid var(--line);}
+  .why-photo img{width:100%;object-fit:cover;aspect-ratio:4/3;}
+  .why h2{font-size:1.9rem;margin-bottom:16px;}
+  .why p{color:var(--ink-soft);margin-bottom:14px;font-size:0.98rem;}
+  .why-list{list-style:none;margin-top:18px;}
+  .why-list li{font-size:0.92rem;color:var(--ink-soft);padding:8px 0 8px 24px;position:relative;}
+  .why-list li::before{content:"✓";position:absolute;left:0;color:var(--copper-deep);font-weight:700;}
+
+  /* CTA */
+  .cta{padding:80px 0 100px;}
+  .cta-box{
+    background:linear-gradient(135deg,var(--ink) 0%, #402616 100%);
+    border-radius:24px;padding:56px 48px;text-align:center;position:relative;overflow:hidden;
+  }
+  .cta-box::before{content:"";position:absolute;inset:0;background:radial-gradient(500px 300px at 80% 0%, rgba(240,169,58,0.25), transparent 60%);}
+  .cta-box h2{color:var(--paper);font-size:2rem;margin-bottom:14px;position:relative;}
+  .cta-box p{color:rgba(251,246,236,0.75);max-width:480px;margin:0 auto 30px;position:relative;}
+  .cta-box .btn-row{justify-content:center;position:relative;}
+
+  /* FOOTER */
+  footer{background:var(--paper-shade);border-top:1px solid var(--line);padding:60px 0 32px;}
+  .footer-cols{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:24px;padding-bottom:30px;border-bottom:1px solid var(--line);margin-bottom:22px;}
+  .footer-cols .mono{color:var(--copper-deep);margin-bottom:12px;display:block;}
+  .footer-cols a,.footer-cols p{display:block;color:var(--ink-soft);font-size:0.9rem;margin-bottom:8px;}
+  .footer-cols a:hover{color:var(--copper-deep);}
+  .footer-bottom{display:flex;justify-content:space-between;color:var(--ink-faint);font-size:0.8rem;flex-wrap:wrap;gap:10px;}
+
+  @media (max-width:900px){
+    .hero-grid{grid-template-columns:1fr;}
+    .hero-photo{order:-1;max-width:420px;}
+    .course-card{grid-template-columns:1fr;}
+    .course-media{min-height:200px;}
+    .format-grid{grid-template-columns:1fr;}
+    .why-grid{grid-template-columns:1fr;}
+    .footer-cols{grid-template-columns:1fr;}
+    .nav-links{display:none;}
+    .menu-btn{display:block;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="logo"><span class="gold-text">QuantumB</span> Learn <span class="tag">Cohorts</span></div>
+    <ul class="nav-links">
+      <li><a href="#courses">Courses</a></li>
+      <li><a href="#format">Format</a></li>
+      <li><a href="#why">Why QuantumB</a></li>
+      <li><a href="https://quantumbdata.org" class="back-link"> Main site</a></li>
+    </ul>
+    <a href="#courses" class="nav-cta">See courses</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-mesh"></div>
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow mono">The teaching arm of QuantumB Data Flow</div>
+      <h1>Learn the exact tools we use to <span class="gold-text">build data systems for clients.</span></h1>
+      <p>Three cohort-based tracks in data engineering, analytics and automation. No scattered Word docs or lost links — every course on this page has its full curriculum, schedule and reference materials attached right where you need them.</p>
+      <div class="btn-row">
+        <a href="#courses" class="btn btn-primary">Browse the 3 tracks</a>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSeTwcqql9HLcM7HHI5GVqg3m4mgUSuSnqt9M7AgtUJt8zOF3Q/viewform" class="btn btn-outline">Join the wait list</a>
+      </div>
+      <div class="stat-row">
+        <div class="stat"><b>3</b><span>Live cohort tracks</span></div>
+        <div class="stat"><b>NG · EU · US</b><span>Student segments</span></div>
+        <div class="stat"><b>100%</b><span>Project-based curriculum</span></div>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <img src="assets/img/student-focus.png" alt="Student attending a live QuantumB cohort class">
+      <div class="hero-photo-tag">Live class · cohort session</div>
+    </div>
+  </div>
+</section>
+
+<div class="node-divider">
+  <div class="wrap">
+    <span class="node-dot"></span><span class="node-line"></span>
+    <span class="node-label">Pick a track · Get the materials · Start building</span>
+    <span class="node-line"></span><span class="node-dot"></span>
+  </div>
+</div>
+
+<section class="courses" id="courses">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 class="gold-text">The three tracks</h2>
+      <p>Each card below is the full course home description, syllabus, and the actual materials doc, attached. Replace the scattered files with one link per course.</p>
+    </div>
+
+    <div class="course-card">
+      <div class="course-media">
+        <span class="course-track"> Engineering</span>
+        <img src="assets/img/cohort-call.png" alt="Data Analytics Engineering cohort class">
+      </div>
+      <div class="course-body">
+        <h3>Data Analytics Engineering</h3>
+        <p>Go from raw data to production pipelines. Build the same warehousing and orchestration stack QuantumB uses on client projects — SQL, Python, dbt, Airflow and Power BI.</p>
+        <div class="course-meta">
+          <span>⏱ 10 weeks · cohort</span>
+          <span>🎓 Beginner → Intermediate</span>
+          <span>💻 Live + recorded</span>
+        </div>
+        <ul class="syllabus">
+          <li>SQL for analytics engineering &amp; data modeling</li>
+          <li>Python ETL, dbt transformations &amp; testing</li>
+          <li>Airflow orchestration &amp; warehouse design</li>
+          <li>Power BI dashboards &amp; stakeholder reporting</li>
+        </ul>
+        <div class="course-actions">
+          <a class="doc-chip" href="https://drive.google.com/drive/folders/REPLACE-WITH-DAE-FOLDER-ID" target="_blank" rel="noopener">
+            <div><small>Attached</small>Course materials &amp; syllabus</div>
+          </a>
+          <a class="enroll-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeTwcqql9HLcM7HHI5GVqg3m4mgUSuSnqt9M7AgtUJt8zOF3Q/viewform">Enroll now →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="course-card">
+      <div class="course-media">
+        <span class="course-track">Track 02 · Foundation</span>
+        <img src="assets/img/student-focus.png" alt="Data Foundation class student learning">
+      </div>
+      <div class="course-body">
+        <h3>Data Foundation (Analysis)</h3>
+        <p>The on-ramp for anyone starting from zero. Learn to think in data, clean and analyze real datasets, and tell a story with numbers — no prior experience required.</p>
+        <div class="course-meta">
+          <span>⏱ 6 weeks · cohort</span>
+          <span>🎓 Absolute beginner</span>
+          <span>💻 Live + recorded</span>
+        </div>
+        <ul class="syllabus">
+          <li>Excel &amp; Google Sheets for real analysis work</li>
+          <li>SQL fundamentals &amp; query practice</li>
+          <li>Data cleaning, visualization &amp; storytelling</li>
+          <li>Intro to Power BI / Looker dashboards</li>
+        </ul>
+        <div class="course-actions">
+          <a class="doc-chip" href="https://drive.google.com/drive/folders/REPLACE-WITH-FOUNDATION-FOLDER-ID" target="_blank" rel="noopener">
+            <div><small>Attached</small>Course materials &amp; syllabus</div>
+          </a>
+          <a class="enroll-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeTwcqql9HLcM7HHI5GVqg3m4mgUSuSnqt9M7AgtUJt8zOF3Q/viewform">Enroll now →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="course-card">
+      <div class="course-media">
+        <span class="course-track">Track 03 · Automation</span>
+        <img src="assets/img/cohort-call.png" alt="n8n workflow automation cohort class">
+      </div>
+      <div class="course-body">
+        <h3>n8n Workflow Automation &amp; AI Agents</h3>
+        <p>Build the same self-hosted automations QuantumB ships to clients webhook-driven workflows, API integrations, and AI agents that run without you watching them.</p>
+        <div class="course-meta">
+          <span>⏱ 8 weeks · cohort</span>
+          <span>🎓 Intermediate</span>
+          <span>💻 Live + recorded</span>
+        </div>
+        <ul class="syllabus">
+          <li>n8n fundamentals: nodes, triggers &amp; webhooks</li>
+          <li>API integrations (Sheets, Slack, Gmail, Paystack)</li>
+          <li>AI agents with LangChain / LangGraph in n8n</li>
+          <li>Deploying &amp; monitoring self-hosted n8n on GCP</li>
+        </ul>
+        <div class="course-actions">
+          <a class="doc-chip" href="https://drive.google.com/drive/folders/REPLACE-WITH-N8N-FOLDER-ID" target="_blank" rel="noopener">
+            <div><small>Attached</small>Course materials &amp; syllabus</div>
+          </a>
+          <a class="enroll-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeTwcqql9HLcM7HHI5GVqg3m4mgUSuSnqt9M7AgtUJt8zOF3Q/viewform">Enroll now →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="format" id="format">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>How the cohorts run</h2>
+      <p>Same format across all three tracks, so switching or stacking courses is simple.</p>
+    </div>
+    <div class="format-grid">
+      <div class="format-card">
+        <span class="mono">Live sessions</span>
+        <h3>Weekly live class</h3>
+        <p>One live teaching session a week, recorded for anyone in a different time zone. NG, EU and US cohorts each get a schedule that fits their hours.</p>
+      </div>
+      <div class="format-card">
+        <span class="mono">Project-based</span>
+        <h3>Build, don't just watch</h3>
+        <p>Every week ships a real deliverable — a pipeline, a dashboard, a workflow — using the same tools QuantumB uses for paying clients.</p>
+      </div>
+      <div class="format-card">
+        <span class="mono">Materials attached</span>
+        <h3>One link per course</h3>
+        <p>Syllabus, slides, datasets and assignments live in the materials doc attached to each course above — no more digging through email for a Word file.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="why" id="why">
+  <div class="wrap why-grid">
+    <div class="why-photo">
+      <img src="assets/img/student-focus.png" alt="Student in a QuantumB live cohort session">
+    </div>
+    <div>
+      <span class="mono" style="color:var(--copper-deep);">Taught by the people who build it</span>
+      <h2 class="gold-text">Not a course platform. A studio that also teaches.</h2>
+      <p>QuantumB Learn is run by the same team behind QuantumB Data Flow, the consultancy building pipelines, dashboards and automations for clients across Nigeria, the US, the EU and Australia.</p>
+      <p>That means the curriculum isn't theoretical — it's pulled directly from active client work, updated as the tools and the work change.</p>
+      <ul class="why-list">
+        <li>Instructors who ship the same stack in production</li>
+        <li>Small cohorts, direct feedback on real projects</li>
+        <li>A straight line from coursework to portfolio to paid work</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap">
+    <div class="cta-box">
+      <h2>Pick a track and get the materials.</h2>
+      <p>Join the wait list for the next Nigerian, EU or US cohort — you'll get the course doc and schedule as soon as a seat opens.</p>
+      <div class="btn-row">
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSeTwcqql9HLcM7HHI5GVqg3m4mgUSuSnqt9M7AgtUJt8zOF3Q/viewform" class="btn btn-primary">Join the wait list</a>
+        <a href="mailto:hello@quantumbdata.org" class="btn btn-outline" style="color:var(--paper);border-color:rgba(251,246,236,0.3);">Ask a question</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-cols">
+      <div>
+        <span class="mono">QuantumB Learn</span>
+        <p>The teaching arm of QuantumB Data Flow. Cohort bootcamps in data, analytics and automation.</p>
+      </div>
+      <div>
+        <span class="mono">Explore</span>
+        <a href="#courses">Courses</a>
+        <a href="#format">Format</a>
+        <a href="#why">Why QuantumB</a>
+      </div>
+      <div>
+        <span class="mono">Connect</span>
+        <a href="https://quantumbdata.org">Main studio site</a>
+        <a href="mailto:hello@quantumbdata.org">hello@quantumbdata.org</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 QuantumB Learn.</span>
+      <span>Data Analytics Engineering · Data Foundation · n8n Automation</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
